@@ -1,0 +1,64 @@
+.wrapper {
+  width: 100%;
+
+  .head {
+    height: 64px;
+    border: 1px solid rgb(235, 237, 240);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #333;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .tips, .login, .apply, .total {
+    width: 30%;
+    margin: 0 auto;
+  }
+
+  .apply, .total {
+    text-align: center;
+  }
+}
+
+h2 {
+  display: block;
+  border-top: 1px solid #eee;
+}
+
+.mt20 {
+  margin-top: 20px !important;
+}
+
+.mb40 {
+  margin-bottom: 40px !important;
+}
+
+.mr20 {
+  margin-right: 20px !important;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width:768px) {
+  html {font-size: 18px;}
+  .tips, .login, .apply, .total {
+    width: 100% !important;
+    margin: 20px auto !important;
+  }
+}
+/*小于 480px  手机*/
+@media screen and (max-width:480px){
+  html {font-size: 16px;}
+  .tips, .login, .apply, .total {
+    width: 80% !important;
+    margin: 20px auto !important;
+  }
+}

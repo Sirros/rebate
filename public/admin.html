@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/button.css" />
+    <title>管理页面</title>
+    <style>
+      .custon-wrapper {
+        width: 100%;
+        text-align: center;
+      }
+      .custom-input-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .custom-textarea {
+        width: 600px;
+        height: 500px;
+        resize: none;
+      }
+
+      .custom-label {
+        display: block;
+        font-size: 16px;
+      }
+
+      .custon-input {
+        height: 24px;
+        width: 200px;
+      }
+
+      .custom-button {
+        height: 44px;
+        width: 120px;
+      }
+
+      .custom-button:hover {
+        cursor: pointer;
+      }
+
+      .mb20 {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="custon-wrapper">
+      <div class="custom-input-box mb20">
+        <span class="custom-label">管理员密码：</span>
+        <input id="pwd-input" class="custon-input" />
+      </div>
+      <textarea
+        id="cookie-txt"
+        class="custom-textarea mb20"
+        type="text0"
+      ></textarea>
+      <div>
+        <button
+          class="button button-primary button-rounded"
+          onclick="setCookit()"
+        >
+          提交
+        </button>
+      </div>
+    </div>
+
+    <script src="./js/axios.js"></script>
+    <script>
+      function setCookit() {
+        const pwd = document.getElementById("pwd-input")?.value;
+        console.log(pwd);
+        if (!pwd) {
+          return alert("请输入管理员密码");
+        }
+
+        const cookieTxt = document.getElementById("cookie-txt")?.value;
+        console.log(cookieTxt, "--");
+
+        axios({
+          method: "post",
+          url: "/localhost:1234/xxx",
+          data: {
+            cookieTxt,
+          },
+        })
+          .then(function (resp) {
+            if (resp.code === 200) {
+              alert("服务器 cookie 更新成功");
+            }
+          })
+          .catch((err) => {
+            alert("网络失败，请重试或联系开发人员！");
+          });
+      }
+    </script>
+  </body>
+</html>
