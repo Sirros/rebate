@@ -78,11 +78,11 @@ const Home = () => {
 
   return (
     <div className="wrapper">
-      <div className="head">BZR自动计算返利，推广码BZR，注册请联系BZR</div>
+      <div className="head">自动计算，推广码BZR，注册请联系BZR</div>
       <div className="tips mt20">
         <Alert
           className="mt20"
-          message="每次提现间隔时间1小时， 申请提现成功后等待打款即可，需要VSN饰品以及有其他问题请联系BZR。"
+          message="每次提现间隔时间1小时， 申请提现成功后需要VSN饰品以及有其他问题请联系BZR。"
           type="warning"
           showIcon
         />
