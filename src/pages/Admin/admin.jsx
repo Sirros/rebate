@@ -25,14 +25,14 @@ const Admin = () => {
     const { opType, adminPassword, username, password, cookieInfo, mail } =
       values;
 
-    const params = { adminPassword };
+    const params = { Admin_password: adminPassword };
     let url = "";
 
     switch (opType) {
       case "operate-signUp":
-        url = "/account/v1/sign-up";
-        params.username = username;
-        params.password = password;
+        url = "/api/register";
+        params.Username = username;
+        params.Password = password;
         doRequest("post", url, params);
         break;
       case "operate-cookie":
@@ -52,7 +52,7 @@ const Admin = () => {
   const doRequest = (type = "post", url = "", params = {}) => {
     request(type, url, params)
       .then((res) => {
-        if (res.code === 200) {
+        if (res.status === 200) {
           message.success("操作成功");
           resetFormHelper();
         } else {

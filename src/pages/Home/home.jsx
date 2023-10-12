@@ -12,10 +12,11 @@ const Home = () => {
   // 登录
   const handleLogin = (values) => {
     const { username, password } = values;
-    request("post", "/account/v1/sign-in", { username, password })
+    request("post", "/api/login", { Username: username, Password: password })
       .then((res) => {
-        if (res.code === 200) {
+        if (res.status === 200) {
           message.success("登录成功");
+          window.localStorage.setItem("token", res.token);
           getShowMoney();
           setIsLogin(true);
           setLoading(true);
@@ -30,10 +31,12 @@ const Home = () => {
 
   // 近期日充值总额
   const getShowMoney = () => {
-    request("get", "/api/v1/calculation/money")
+    request("get", "/api/paymentAmount", {
+      token: window.localStorage.getItem("token"),
+    })
       .then((res) => {
-        if (res.code === 200) {
-          setMoney(res.data);
+        if (res.status === 200) {
+          setMoney(res.data.total_money);
         } else {
           message.info(res.message);
         }
@@ -48,9 +51,11 @@ const Home = () => {
 
   // 申请返利
   const handleApplyGetMoney = () => {
-    request("post", "/api/v1/apply/send")
+    request("get", "/api/sendMail", {
+      token: window.localStorage.getItem("token"),
+    })
       .then((res) => {
-        if (res.code === 200) {
+        if (res.status === 200) {
           message.info("申请成功");
         } else {
           message.info(res.message);
