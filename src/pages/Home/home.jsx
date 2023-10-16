@@ -12,11 +12,28 @@ const Home = () => {
   // 登录
   const handleLogin = (values) => {
     const { username, password } = values;
-    request("post", "/api/login", { Username: username, Password: password })
+    request("post", "/api/login", { partnerId: username, password })
       .then((res) => {
         if (res.status === 200) {
           message.success("登录成功");
-          window.localStorage.setItem("token", res.token);
+          window.localStorage.setItem("token", res.token); // 保存token
+          window.localStorage.setItem("timeStamp", Date.now()); // 保存token
+
+          // const savedTimeStamp = localStorage.getItem('timestamp');
+          // if (savedTimeStamp) {
+          //   // 判断当前时间与上次保存的时间戳之间的差异是否超过十五分钟 (900,000 毫秒)
+          //   const fifteenMinutes = 15 * 60 * 1000;
+          //   const isExpired = currentTimeStamp - savedTimeStamp > fifteenMinutes;
+
+          //   if (isExpired) {
+          //     // 时间超过了十五分钟，执行相应的操作
+          //     // ...
+          //   } else {
+          //     // 时间未超过十五分钟，执行其他操作
+          //     // ...
+          //   }
+          // }
+
           getShowMoney();
           setIsLogin(true);
           setLoading(true);
@@ -31,7 +48,7 @@ const Home = () => {
 
   // 近期日充值总额
   const getShowMoney = () => {
-    request("get", "/api/paymentAmount", {
+    request("get", "/api/amount", {
       token: window.localStorage.getItem("token"),
     })
       .then((res) => {

@@ -25,26 +25,26 @@ const Admin = () => {
     const { opType, adminPassword, username, password, cookieInfo, mail } =
       values;
 
-    const params = { Admin_password: adminPassword };
+    const params = { admin_password: adminPassword };
     let url = "";
 
     switch (opType) {
       case "operate-signUp":
         url = "/api/register";
-        params.Username = username;
-        params.Password = password;
+        params.partnerId = username;
+        params.password = password;
         doRequest("post", url, params);
         break;
       case "operate-cookie":
-        url = "/config/v1/cookie/update";
+        url = "/api/cookie";
         params.cookieInfo = cookieInfo;
-        doRequest("post", url, params);
+        doRequest("get", url, params);
         break;
-      default:
-        url = "/config/v1/mail/update";
-        params.mail = mail;
-        doRequest("post", url, params);
-        break;
+      // default:
+      //   url = "/config/v1/mail/update";
+      //   params.mail = mail;
+      //   doRequest("post", url, params);
+      //   break;
     }
   };
 
@@ -117,7 +117,7 @@ const Admin = () => {
           <Radio.Group value={opType}>
             <Radio.Button value="operate-signUp">注册新用户</Radio.Button>
             <Radio.Button value="operate-cookie">更新cookie</Radio.Button>
-            <Radio.Button value="operate-emial">修改邮件发送地址</Radio.Button>
+            {/* <Radio.Button value="operate-emial">修改邮件发送地址</Radio.Button> */}
           </Radio.Group>
         </Form.Item>
         <Form.Item
