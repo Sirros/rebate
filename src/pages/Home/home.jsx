@@ -48,9 +48,9 @@ const Home = () => {
 
   // 近期日充值总额
   const getShowMoney = () => {
-    request("get", "/api/amount", {
-      token: window.localStorage.getItem("token"),
-    })
+    const token = window.localStorage.getItem("token");
+    if (!token) return;
+    request("get", "/api/amount", window.localStorage.getItem("token"), {})
       .then((res) => {
         if (res.status === 200) {
           setMoney(res.data.total_money);
@@ -68,12 +68,12 @@ const Home = () => {
 
   // 申请返利
   const handleApplyGetMoney = () => {
-    request("get", "/api/sendMail", {
-      token: window.localStorage.getItem("token"),
-    })
+    request("get", "/api/mail", window.localStorage.getItem("token"), {})
       .then((res) => {
+        console.log(res);
         if (res.status === 200) {
           message.info("申请成功");
+          getShowMoney();
         } else {
           message.info(res.message);
         }

@@ -22,8 +22,7 @@ const Admin = () => {
 
   // 提交
   const handleSubmit = (values) => {
-    const { opType, adminPassword, username, password, cookieInfo, mail } =
-      values;
+    const { opType, adminPassword, username, password, cookieInfo } = values;
 
     const params = { admin_password: adminPassword };
     let url = "";
@@ -40,11 +39,11 @@ const Admin = () => {
         params.cookieInfo = cookieInfo;
         doRequest("get", url, params);
         break;
-      // default:
-      //   url = "/config/v1/mail/update";
-      //   params.mail = mail;
-      //   doRequest("post", url, params);
-      //   break;
+      default:
+        //   url = "/config/v1/mail/update";
+        //   params.mail = mail;
+        //   doRequest("post", url, params);
+        break;
     }
   };
 
@@ -73,7 +72,7 @@ const Admin = () => {
         form.setFieldsValue({ cookieInfo: "" });
         break;
       default:
-        form.setFieldsValue({ mail: "" });
+        // form.setFieldsValue({ mail: "" });
         break;
     }
   };
@@ -176,7 +175,7 @@ const Admin = () => {
         )}
 
         {/* 更新邮件地址 */}
-        {opType === "operate-emial" && (
+        {/* {opType === "operate-emial" && (
           <Form.Item
             label="邮箱"
             name={["mail"]}
@@ -189,7 +188,7 @@ const Admin = () => {
           >
             <Input placeholder="请输入邮箱" />
           </Form.Item>
-        )}
+        )} */}
 
         <Form.Item style={submitButtonWrapperStyle} {...buttonItemLayout}>
           <Button style={submitButtonStyle} type="primary" htmlType="submit">
