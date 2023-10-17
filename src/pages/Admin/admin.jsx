@@ -37,8 +37,7 @@ const Admin = () => {
       case "operate-cookie":
         url = "/api/cookie";
         params.cookie = cookieInfo;
-        console.log(params);
-        // doRequest("post", url, params);
+        doRequest("post", url, params);
         break;
       default:
         //   url = "/config/v1/mail/update";
