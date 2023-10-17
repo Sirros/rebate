@@ -79,7 +79,7 @@ const Home = () => {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          message.info("申请成功");
+          message.success("申请成功");
           getShowMoney();
         } else {
           message.info(res.message);
