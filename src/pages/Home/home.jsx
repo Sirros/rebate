@@ -8,17 +8,20 @@ const Home = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [money, setMoney] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [mailLoading, setMailLoading] = useState(false);
 
   // 登录
   const handleLogin = (values) => {
     const { username, password } = values;
+    setLoginLoading(true);
     request("post", "/api/login", { partnerId: username, password })
       .then((res) => {
         if (res.status === 200) {
           message.success("登录成功");
           window.localStorage.setItem("token", res.token); // 保存token
-          window.localStorage.setItem("timeStamp", Date.now()); // 保存token
 
+          // window.localStorage.setItem("timeStamp", Date.now());
           // const savedTimeStamp = localStorage.getItem('timestamp');
           // if (savedTimeStamp) {
           //   // 判断当前时间与上次保存的时间戳之间的差异是否超过十五分钟 (900,000 毫秒)
@@ -43,6 +46,9 @@ const Home = () => {
       })
       .catch((err) => {
         message.error("网络异常，请重试");
+      })
+      .finally(() => {
+        setLoginLoading(false);
       });
   };
 
@@ -68,6 +74,7 @@ const Home = () => {
 
   // 申请返利
   const handleApplyGetMoney = () => {
+    setMailLoading(true);
     request("get", "/api/mail", window.localStorage.getItem("token"), {})
       .then((res) => {
         console.log(res);
@@ -80,6 +87,9 @@ const Home = () => {
       })
       .catch((err) => {
         message.error("网络异常，请重试");
+      })
+      .finally(() => {
+        setMailLoading(false);
       });
   };
 
@@ -158,7 +168,12 @@ const Home = () => {
             {...buttonItemLayout}
             style={submitButtonWrapperStyle}
           >
-            <Button style={submitButtonStyle} type="primary" htmlType="submit">
+            <Button
+              style={submitButtonStyle}
+              type="primary"
+              htmlType="submit"
+              loading={loginLoading}
+            >
               登录
             </Button>
           </Form.Item>
@@ -174,7 +189,12 @@ const Home = () => {
       </div>
       <div className="apply">
         {isLogin && (
-          <Button type="primary" size="large" onClick={handleApplyGetMoney}>
+          <Button
+            type="primary"
+            size="large"
+            onClick={handleApplyGetMoney}
+            loading={mailLoading}
+          >
             申请返利
           </Button>
         )}
