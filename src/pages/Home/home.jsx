@@ -114,7 +114,7 @@ const Home = () => {
       <div className="tips mt20">
         <Alert
           className="mt20"
-          message="每次提现间隔时间1小时， 申请提现成功后需要VSN饰品以及有其他问题请联系BZR。"
+          message="申请成功后发VSN交易链接给BZR，饰品会直接发送至VSN。"
           type="warning"
           showIcon
         />
