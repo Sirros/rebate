@@ -78,7 +78,7 @@ const Home = () => {
 
   return (
     <div className="wrapper">
-      <div className="head">自动计算，推广码BZR，注册请联系BZR</div>
+      <div className="head">自动计算</div>
       <div className="tips mt20">
         <Alert
           className="mt20"
@@ -148,12 +148,12 @@ const Home = () => {
             七日内充值总金额： <Spin />
           </h2>
         )}
-        {isLogin && !loading && <h2>七日内充值总金额：${money}</h2>}
+        {isLogin && !loading && <h2>七日内充值总金额：{money}</h2>}
       </div>
       <div className="apply">
         {isLogin && (
           <Button type="primary" size="large" onClick={handleApplyGetMoney}>
-            申请返利
+            申请
           </Button>
         )}
       </div>
