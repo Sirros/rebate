@@ -80,12 +80,12 @@ const Home = () => {
     <div className="wrapper">
       <div className="head">自动计算</div>
       <div className="tips mt20">
-        <Alert
+        {/* <Alert
           className="mt20"
           message="每次提现间隔时间1小时， 申请提现成功后需要VSN饰品以及有其他问题请联系BZR。"
           type="warning"
           showIcon
-        />
+        /> */}
       </div>
       <div className="login mt20 mb40">
         <Form
